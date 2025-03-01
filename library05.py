@@ -5,7 +5,7 @@ import math
 
 # Clase Geometrica, metaclase
 
-class Geometica:
+class Geometrica:
 
     def __init__(self,painter:QtGui.QPainter, x, y):
         self.x = x
@@ -20,7 +20,7 @@ class Geometica:
         
 # Clase Circulo hereda de Geometrica
 
-class Circulo(Geometica):
+class Circulo(Geometrica):
     
     def __init__(self,painter:QtGui.QPainter, x, y, radio):
         super().__init__(painter,x,y)    
@@ -39,7 +39,7 @@ class Circulo(Geometica):
 
 # Clase Circulo hereda de Geometrica
 
-class Cuadrado(Geometica):
+class Cuadrado(Geometrica):
     
     def __init__(self,painter:QtGui.QPainter, x, y, lado):
         super().__init__(painter,x,y)    
@@ -55,7 +55,7 @@ class Cuadrado(Geometica):
         self.painter.setBrush(Qt.GlobalColor.transparent)
         self.painter.drawRect(self.x,self.y,self.lado,self.lado)
 
-class Triangulo(Geometica):
+class Triangulo(Geometrica):
     def __init__(self, painter:QtGui.QPainter, x, y, lado):
         super().__init__(painter, x, y)
         self.lado = lado
@@ -80,7 +80,7 @@ class Triangulo(Geometica):
         path.closeSubpath()
         self.painter.drawPath(path)
 
-class Pentagono(Geometica):
+class Pentagono(Geometrica):
     def __init__(self, painter:QtGui.QPainter, x, y, radio):
         super().__init__(painter, x, y)
         self.radio = radio
