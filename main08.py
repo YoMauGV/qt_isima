@@ -6,17 +6,22 @@ import library05
 import urllib.request
 
 color_translation = {
-    "rojo": "red",
-    "verde": "green",
-    "azul": "blue",
-    "amarillo": "yellow",
     "negro": "black",
-    "blanco": "white",
+    "rojo": "red",
+    "rojo oscuro": "darkRed",
+    "verde": "green",
+    "verde oscuro": "darkGreen",
+    "azul": "blue",
+    "azul oscuro": "darkBlue",
+    "cian": "cyan",
+    "cian oscuro": "darkCyan",
+    "magenta": "magenta",
+    "magenta oscuro": "darkMagenta",
+    "amarillo": "yellow",
+    "amarillo oscuro": "darkYellow",
     "gris": "gray",
-    "morado": "purple",
-    "naranja": "orange",
-    "rosa": "pink",
-    "marrón": "brown"
+    "gris oscuro": "darkGray",
+    "gris claro": "lightGray"
 }
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -48,19 +53,29 @@ class MainWindow(QtWidgets.QMainWindow):
                 figura.dibujar()
         elif json_fig["nombre"] == 'cuadrado':
             figura=library05.Cuadrado(painter,json_fig["x"],json_fig["y"],json_fig["medida"])
-            figura.dibujar()
+            if(json_fig["color"]):
+                color = color_translation[json_fig["color"]]
+                figura.dibujar(Qt.GlobalColor[color])
+            else:
+                figura.dibujar()
         elif json_fig["nombre"] == 'triangulo':
             figura=library05.Triangulo(painter,json_fig["x"],json_fig["y"],json_fig["medida"])
-            figura.dibujar()
+            if(json_fig["color"]):
+                color = color_translation[json_fig["color"]]
+                figura.dibujar(Qt.GlobalColor[color])
+            else:
+                figura.dibujar()
         elif json_fig["nombre"] == 'pentagono':
             figura=library05.Pentagono(painter,json_fig["x"],json_fig["y"],json_fig["medida"])
-            figura.dibujar()
+            if(json_fig["color"]):
+                color = color_translation[json_fig["color"]]
+                figura.dibujar(Qt.GlobalColor[color])
+            else:
+                figura.dibujar()
         else:
             print("No se reconoce la figura {}".format(json_fig))
         painter.end()      
         self.label.setPixmap(canvas)
-
-
 
 app = QtWidgets.QApplication(sys.argv)
 window = MainWindow()
